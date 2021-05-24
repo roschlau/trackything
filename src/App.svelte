@@ -6,7 +6,7 @@
     import Nav from './Nav.svelte'
 </script>
 
-<style>
+<style lang="scss">
     header {
         color: var(--color-primary);
         font-size: 36px;

@@ -2,42 +2,42 @@
     export let segment: string
 </script>
 
-<style>
-    nav {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        border-top: 1px solid hsla(0, 0%, 100%, .12);
-        background-color: var(--color-background);
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+<style lang="scss">
+  nav {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid hsla(0, 0%, 100%, .12);
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  a {
+    margin: 0;
+    flex-grow: 1;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: transform .2s;
+
+    &[aria-current] {
+      color: var(--color-primary);
     }
 
-    a {
-        margin: 0;
-        flex-grow: 1;
-        padding: 12px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 14px;
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        transition: transform .2s;
+    &:not([aria-current]) {
+      transform: scale(.9);
     }
 
-    a > img {
-        margin-bottom: 4px;
+    & > img {
+      margin-bottom: 4px;
     }
-
-    [aria-current] {
-        color: var(--color-primary);
-    }
-
-    a:not([aria-current]) {
-        transform: scale(.9);
-    }
+  }
 </style>
 
 <nav>
