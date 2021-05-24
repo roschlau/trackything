@@ -2,34 +2,37 @@
     @component
     This is the main component with a doc comment.
 -->
-
 <script lang="ts">
-    export let name: string
+    import Nav from './Nav.svelte'
 </script>
 
-<main>
-    <h1>Hello {name}!</h1>
-    <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
 <style>
+    header {
+        color: var(--color-primary);
+        font-size: 36px;
+        letter-spacing: 0.07em;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     main {
-        text-align: center;
-        padding: 1em;
-        max-width: 240px;
+        position: relative;
+        max-width: 56em;
+        background-color: var(--color-background);
+        padding: 2em;
         margin: 0 auto;
-    }
-
-    h1 {
-        color: #ff3e00;
-        text-transform: uppercase;
-        font-size: 4em;
-        font-weight: 100;
-    }
-
-    @media (min-width: 640px) {
-        main {
-            max-width: none;
-        }
+        box-sizing: border-box;
     }
 </style>
+
+<header class="font-heading-bold">
+    trackything
+</header>
+
+<main>
+    Test
+</main>
+
+<Nav/>

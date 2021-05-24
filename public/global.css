@@ -1,63 +1,74 @@
+body {
+    --font-heading: 'Comfortaa', sans-serif;
+    --font-body: 'Assistant', sans-serif;
+
+    --color-primary: hsl(346, 100%, 71%);
+    --color-background: hsl(0, 0%, 7%);
+
+    --color-text-primary: hsla(0, 0%, 100%, .87);
+    --color-text-secondary: hsla(0, 0%, 100%, .60);
+    --color-text-disabled-hint: hsla(0, 0%, 100%, .38);
+
+    --color-surface04dp: linear-gradient(0deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09)), #121212;
+
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+}
+
 html, body {
-    position: relative;
     width: 100%;
     height: 100%;
 }
 
-body {
-    color: #333;
-    margin: 0;
-    padding: 8px;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 0.5em 0;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2em;
 }
 
 a {
-    color: rgb(0, 100, 200);
-    text-decoration: none;
+    color: inherit;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
-a:visited {
-    color: rgb(0, 80, 160);
-}
-
-label {
-    display: block;
-}
-
-input, button, select, textarea {
-    font-family: inherit;
-    font-size: inherit;
-    -webkit-padding: 0.4em 0;
-    padding: 0.4em;
-    margin: 0 0 0.5em 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
+code {
+    font-family: menlo, inconsolata, monospace;
+    font-size: calc(1em - 2px);
+    color: #555;
+    background-color: #f0f0f0;
+    padding: 0.2em 0.4em;
     border-radius: 2px;
 }
 
-input:disabled {
-    color: #ccc;
+@media (min-width: 400px) {
+    body {
+        font-size: 16px;
+    }
 }
 
-button {
-    color: #333;
-    background-color: #f4f4f4;
-    outline: none;
+.font-heading-regular {
+    font-family: var(--font-heading);
+    font-weight: 400;
 }
 
-button:disabled {
-    color: #999;
+.font-heading-bold {
+    font-family: var(--font-heading);
+    font-weight: 700;
 }
 
-button:not(:disabled):active {
-    background-color: #ddd;
+.font-body-regular {
+    font-family: var(--font-body);
+    font-weight: 300;
 }
 
-button:focus {
-    border-color: #666;
+.font-body-bold {
+    font-family: var(--font-body);
+    font-weight: 500;
 }
