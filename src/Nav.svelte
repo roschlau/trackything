@@ -1,5 +1,8 @@
 <script lang="ts">
-    export let segment: string
+    import { Link, useMatch } from 'svelte-navigator'
+
+    const trackMatch = useMatch('/')
+    const analyzeMatch = useMatch('/analyze')
 </script>
 
 <style lang="scss">
@@ -14,7 +17,7 @@
     align-items: center;
   }
 
-  a {
+  nav > :global(.nav-link) {
     margin: 0;
     flex-grow: 1;
     padding: 12px;
@@ -25,28 +28,26 @@
     color: var(--color-text-secondary);
     text-decoration: none;
     transition: transform .2s;
+    transform: scale(.9);
+  }
 
-    &[aria-current] {
-      color: var(--color-primary);
-    }
+  nav > :global(.nav-link[aria-current]) {
+    color: var(--color-primary);
+    transform: scale(1);
+  }
 
-    &:not([aria-current]) {
-      transform: scale(.9);
-    }
-
-    & > img {
-      margin-bottom: 4px;
-    }
+  img {
+    margin-bottom: 4px;
   }
 </style>
 
 <nav>
-    <a aria-current="{segment === undefined ? 'page' : undefined}" href=".">
-        <img src="{segment === undefined ? '/icons/edit_primary.svg' : '/icons/edit_default.svg'}" alt="Track"/>
+    <Link to="/" class="nav-link">
+        <img src="{$trackMatch ? '/icons/edit_primary.svg' : '/icons/edit_default.svg'}" alt="Track"/>
         Track
-    </a>
-    <a aria-current="{segment === 'analyze' ? 'page' : undefined}" href="analyze">
-        <img src="{segment === 'analyze' ? '/icons/analyze_primary.svg' : '/icons/analyze_default.svg'}" alt="Analyze"/>
+    </Link>
+    <Link to="/analyze" class="nav-link">
+        <img src="{$analyzeMatch ? '/icons/analyze_primary.svg' : '/icons/analyze_default.svg'}" alt="Analyze"/>
         Analyze
-    </a>
+    </Link>
 </nav>
