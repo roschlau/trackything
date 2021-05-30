@@ -4,6 +4,7 @@
     import { navigate } from 'svelte-navigator'
     import { showTime } from '../util/time'
     import { autoresize } from '../util/autoresize'
+    import MoodSelector from './MoodSelector.svelte'
 
     export let trackerId: string
 
@@ -160,7 +161,10 @@
         <div class="field">
             <div class="field-name">{tracker.meta.mainField.name}</div>
             {#if tracker.meta.mainField.type === 'mood'}
-                TODO: Mood selection
+                <MoodSelector
+                    selectedValue="{entry.value}"
+                    on:moodSelected={(event) => entry.value = event.detail}
+                />
             {:else if tracker.meta.mainField.type === 'numeric' }
                 TODO: numeric selection
             {/if}
