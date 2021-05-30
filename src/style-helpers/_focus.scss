@@ -4,3 +4,26 @@
     border-color: $color;
   }
 }
+
+@mixin focus-border-after(
+  $color: var(--color-text-disabled-hint),
+  $border-radius: 8px,
+  $inset: 0,
+  $width: 2px,
+) {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: $inset;
+    bottom: $inset;
+    left: $inset;
+    right: $inset;
+    border: $width solid transparent;
+    border-radius: $border-radius;
+  }
+  &:focus::after {
+    border-color: $color;
+  }
+}
