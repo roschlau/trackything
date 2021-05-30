@@ -6,6 +6,7 @@
 </script>
 
 <style lang="scss">
+  @import "src/style-helpers/focus";
   nav {
     position: sticky;
     bottom: 0;
@@ -29,6 +30,24 @@
     text-decoration: none;
     transition: transform .2s;
     transform: scale(.9);
+
+    position: relative;
+  }
+
+  nav > :global(.nav-link::after) {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+  }
+
+  nav > :global(.nav-link:focus::after) {
+      border-color: var(--color-text-disabled-hint);
   }
 
   nav > :global(.nav-link[aria-current]) {
