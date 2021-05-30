@@ -6,6 +6,7 @@ import {terser} from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
+import copy from "rollup-plugin-copy";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -75,7 +76,14 @@ export default {
 
         // If we're building for production (npm run build
         // instead of npm run dev), minify
-        production && terser()
+        production && terser(),
+
+        // Enable catch-all for SPA deployment to surge
+        production && copy({
+            targets: [
+                { src: 'public/index.html', dest: 'public', rename: '200.html' }
+            ]
+        })
     ],
     watch: {
         clearScreen: false
