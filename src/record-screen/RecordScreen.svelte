@@ -131,7 +131,7 @@
       padding: 24px;
       text-transform: uppercase;
 
-      @include focus-border();
+      @include focus-border-after(4px);
 
       &.discard {
         color: var(--color-text-secondary);
