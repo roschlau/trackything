@@ -33,7 +33,7 @@
     }
 
     function saveEntry() {
-        tracker.entries.unshift(entry)
+        tracker.entries.unshift(Object.freeze(entry))
         navigate(-1)
     }
 </script>

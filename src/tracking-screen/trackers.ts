@@ -1,5 +1,5 @@
 export const trackers: Tracker[] = [
-    {
+    Object.freeze({
         id: '1',
         meta: {
             name: 'Sleep',
@@ -7,8 +7,8 @@ export const trackers: Tracker[] = [
             tags: ['With Partner', 'Woke Up Naturally', 'Didn\'t sleep through', 'Bad Dreams'],
         },
         entries: [],
-    },
-    {
+    }),
+    Object.freeze({
         id: '2',
         meta: {
             name: 'Water',
@@ -16,8 +16,8 @@ export const trackers: Tracker[] = [
             tags: [],
         },
         entries: [],
-    },
-    {
+    }),
+    Object.freeze({
         id: '3',
         meta: {
             name: 'Movement',
@@ -25,7 +25,7 @@ export const trackers: Tracker[] = [
             tags: ['Walk', 'Bike', 'VR - intense', 'VR - casual'],
         },
         entries: [],
-    },
+    }),
 ]
 
 export interface Tracker {
