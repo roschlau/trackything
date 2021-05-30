@@ -7,7 +7,7 @@
 
 <style lang="scss">
   nav {
-    position: absolute;
+    position: sticky;
     bottom: 0;
     width: 100%;
     border-top: 1px solid hsla(0, 0%, 100%, .12);
