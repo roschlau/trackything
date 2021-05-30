@@ -57,6 +57,7 @@ button {
     font-size: 100%;
     color: inherit;
     text-align: inherit;
+    font-family: inherit;
 }
 * {
     -webkit-tap-highlight-color: transparent;
