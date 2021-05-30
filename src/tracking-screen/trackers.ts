@@ -3,8 +3,8 @@ export const trackers: Tracker[] = [
         id: '1',
         meta: {
             name: 'Sleep',
-            mainField: { type: 'mood', name: 'Quality', default: 3 },
-            tags: ['With Partner', 'Woke Up Naturally', 'Bad Dreams', 'Slept Through'],
+            mainField: { type: 'mood', name: 'Quality', default: 2 },
+            tags: ['With Partner', 'Woke Up Naturally', 'Didn\'t sleep through', 'Bad Dreams'],
         },
         entries: [],
     },
