@@ -5,6 +5,7 @@
     import { showTime } from '../util/time'
     import { autoresize } from '../util/autoresize'
     import MoodSelector from './MoodSelector.svelte'
+    import NumericValueSelector from './NumericValueSelector.svelte'
 
     export let trackerId: string
 
@@ -166,7 +167,11 @@
                     on:moodSelected={(event) => entry.value = event.detail}
                 />
             {:else if tracker.meta.mainField.type === 'numeric' }
-                TODO: numeric selection
+                <NumericValueSelector
+                    selectedValue="{entry.value}"
+                    field="{tracker.meta.mainField}"
+                    on:valueSelected={(event) => entry.value = event.detail}
+                />
             {/if}
         </div>
         {#if tracker.meta.tags.length > 0}

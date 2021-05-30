@@ -3,6 +3,7 @@ body {
     --font-body: 'Assistant', sans-serif;
 
     --color-primary: hsl(346, 100%, 71%);
+    --color-error: hsl(0, 95%, 68%);
     --color-background: hsl(0, 0%, 7%);
 
     --color-text-primary: hsla(0, 0%, 100%, .9);
@@ -75,6 +76,14 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     border-color: var(--color-text-disabled-hint);
 }
 
+input[type="text"].validation-failed, input[type="email"].validation-failed, textarea.validation-failed {
+    border-color: var(--color-error);
+}
+
+button {
+    cursor: pointer;
+}
+
 code {
     font-family: menlo, inconsolata, monospace;
     font-size: calc(1em - 2px);
@@ -90,22 +99,22 @@ code {
     }
 }
 
-.font-heading-regular {
+.font-heading-regular, input[type="text"].font-heading-regular {
     font-family: var(--font-heading);
     font-weight: 400;
 }
 
-.font-heading-bold {
+.font-heading-bold, input[type="text"].font-heading-bold {
     font-family: var(--font-heading);
     font-weight: 700;
 }
 
-.font-body-regular {
+.font-body-regular, input[type="text"].font-body-regular {
     font-family: var(--font-body);
     font-weight: 300;
 }
 
-.font-body-bold {
+.font-body-bold, input[type="text"].font-body-bold {
     font-family: var(--font-body);
     font-weight: 500;
 }
