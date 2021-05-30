@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { dummyTrackers } from './trackers'
+    import { trackers } from './trackers'
     import TrackerTile from './TrackerTile.svelte'
 </script>
 
@@ -45,12 +45,12 @@
   }
 </style>
 
-<h1 class="font-heading-bold">
+<h1>
     trackything
 </h1>
 
 <ul class="trackers-list">
-    {#each dummyTrackers as tracker}
+    {#each trackers as tracker (tracker.id)}
         <li class="square">
             <TrackerTile {tracker}/>
         </li>

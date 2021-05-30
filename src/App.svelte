@@ -7,6 +7,7 @@
     import { Route, Router } from 'svelte-navigator'
     import TrackingScreen from './tracking-screen/TrackingScreen.svelte'
     import AnalyzeScreen from './AnalyzeScreen.svelte'
+    import RecordScreen from './record-screen/RecordScreen.svelte'
 </script>
 
 <style lang="scss">
@@ -26,13 +27,18 @@
 
 <Router>
     <main>
-        <Route path="/">
-            <TrackingScreen/>
+        <Route path="/record/:trackerId" component="{RecordScreen}">
+
         </Route>
-        <Route path="/analyze">
-            <AnalyzeScreen/>
+        <Route path="/*">
+            <Route path="/">
+                <TrackingScreen/>
+            </Route>
+            <Route path="/analyze">
+                <AnalyzeScreen/>
+            </Route>
+            <div aria-hidden="true" class="spacer"></div>
+            <Nav/>
         </Route>
-        <div aria-hidden="true" class="spacer"></div>
-        <Nav/>
     </main>
 </Router>

@@ -1,10 +1,16 @@
 <script lang="ts">
     import type { Tracker } from './trackers'
+    import { link } from 'svelte-navigator'
+    import { relativeTime } from '../util/time'
 
     export let tracker: Tracker
+    const lastEntry = tracker.entries[0]
+
 </script>
 
 <style lang="scss">
+  @import "src/style-helpers/focus";
+
   .tracker {
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
     border-radius: 8px;
@@ -13,11 +19,13 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    text-decoration: none;
+    @include focus-border()
   }
 
   .tracker-name {
     display: block;
-    margin: 12px;
+    margin: 10px;
     font-size: 18px;
   }
 
@@ -49,7 +57,7 @@
   .last-entry {
     display: block;
     align-self: flex-end;
-    margin: 8px;
+    margin: 4px 6px;
     font-size: 14px;
     color: var(--color-text-disabled-hint);
   }
@@ -59,10 +67,14 @@
   }
 </style>
 
-<button class="tracker">
-    <span class="tracker-name font-body-bold">{tracker.name}</span>
+<a href="/record/{tracker.id}" class="tracker" use:link>
+    <span class="tracker-name font-body-bold">{tracker.meta.name}</span>
     <span class="center-plus">+</span>
     <span class="last-entry">
-        Last Entry: <span class="last-entry-value">{tracker.lastEntry}</span>
+        {#if lastEntry}
+            Last Entry: <span class="last-entry-value">{ relativeTime(lastEntry.time) }</span>
+        {:else}
+            No Entries
+        {/if}
     </span>
-</button>
+</a>

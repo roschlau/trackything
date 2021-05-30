@@ -1,0 +1,6 @@
+@mixin focus-border($color: var(--color-text-disabled-hint), $width: 2px) {
+  border: $width solid transparent;
+  &:focus {
+    border-color: $color;
+  }
+}

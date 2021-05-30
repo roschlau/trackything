@@ -5,7 +5,7 @@
 </style>
 
 
-<h1 class="font-heading-bold">
+<h1>
     Analytics
 </h1>
 

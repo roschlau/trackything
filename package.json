@@ -13,6 +13,8 @@
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-typescript": "^8.2.1",
     "@tsconfig/svelte": "^1.0.13",
+    "@types/autosize": "^4.0.0",
+    "@types/sprintf-js": "^1.1.2",
     "node-sass": "^6.0.0",
     "rollup": "^2.50.4",
     "rollup-plugin-css-only": "^3.1.0",
@@ -26,7 +28,9 @@
     "typescript": "^4.3.2"
   },
   "dependencies": {
+    "autosize": "^5.0.0",
     "sirv-cli": "^1.0.12",
+    "sprintf-js": "^1.1.2",
     "svelte-navigator": "^3.1.5"
   }
 }

@@ -5,14 +5,19 @@ body {
     --color-primary: hsl(346, 100%, 71%);
     --color-background: hsl(0, 0%, 7%);
 
-    --color-text-primary: hsla(0, 0%, 100%, .87);
-    --color-text-secondary: hsla(0, 0%, 100%, .60);
-    --color-text-disabled-hint: hsla(0, 0%, 100%, .38);
+    --color-text-primary: hsla(0, 0%, 100%, .9);
+    --color-text-secondary: hsla(0, 0%, 100%, .6);
+    --color-text-disabled-hint: hsla(0, 0%, 100%, .3);
+
+    --color-text-primary-light-background: hsla(0, 0%, 0%, .87);
+    --color-text-secondary-light-background: hsla(0, 0%, 0%, .54);
+    --color-text-disabled-hint-light-background: hsla(0, 0%, 0%, .38);
 
     --color-surface04dp: linear-gradient(0deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09)), #121212;
 
     margin: 0;
     font-family: var(--font-body);
+    font-weight: 300;
     font-size: 14px;
     line-height: 1.5;
     background-color: var(--color-background);
@@ -36,6 +41,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
     font-size: 36px;
     letter-spacing: 0.07em;
     padding: 24px;
@@ -50,6 +57,22 @@ h1 {
 
 a {
     color: inherit;
+}
+
+input[type="text"], input[type="email"], textarea {
+    border-radius: 8px;
+    padding: 10px;
+    background: var(--color-surface04dp);
+    font-size: 18px;
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--color-text-primary);
+    resize: none;
+    border: 2px solid transparent;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    border-color: var(--color-text-disabled-hint);
 }
 
 code {
