@@ -55,10 +55,10 @@
             <TrackerTile {tracker}/>
         </li>
     {/each}
-    <li class="square">
-        <button class="new-tracker-button">
-            <span class="button-text font-body-bold">New Tracker</span>
-            <span class="plus-sign">+</span>
-        </button>
-    </li>
+<!--    <li class="square">-->
+<!--        <button class="new-tracker-button">-->
+<!--            <span class="button-text font-body-bold">New Tracker</span>-->
+<!--            <span class="plus-sign">+</span>-->
+<!--        </button>-->
+<!--    </li>-->
 </ul>
