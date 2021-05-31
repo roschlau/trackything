@@ -1,9 +1,11 @@
 {
   "name": "trackything",
   "short_name": "trackything",
+  "description": "Privacy-first, beautiful and fast anything-tracker",
+  "background_color": "#FF6B8E",
+  "theme_color": "#121212",
   "display": "browser",
-  "background_color": "#121212",
-  "description": "Track anything you want!",
+  "start_url": "./",
   "icons": [
     {
       "src": "app-icons/icon-48.png",
