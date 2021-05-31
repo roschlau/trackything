@@ -27,9 +27,7 @@
 
 <Router>
     <main>
-        <Route path="/record/:trackerId" component="{RecordScreen}">
-
-        </Route>
+        <Route path="/record/:trackerId" component="{RecordScreen}"/>
         <Route path="/*">
             <Route path="/">
                 <TrackingScreen/>
