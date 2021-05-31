@@ -60,6 +60,7 @@
     bottom: 0;
     background: var(--color-primary);
     opacity: .3;
+    transition: right .2s;
   }
   .controls {
     position: relative;

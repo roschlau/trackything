@@ -1,5 +1,6 @@
 @mixin focus-border($color: var(--color-text-disabled-hint), $width: 2px) {
   border: $width solid transparent;
+  transition: border .1s;
   &:focus {
     border-color: $color;
   }
@@ -22,6 +23,7 @@
     right: $inset;
     border: $width solid transparent;
     border-radius: $border-radius;
+    transition: all .1s;
   }
   &:focus::after {
     border-color: $color;
