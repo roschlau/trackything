@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { TrackerEntry } from '../tracking-screen/trackers'
+    import type { Tracker, TrackerEntry } from '../tracking-screen/trackers'
     import { trackers } from '../tracking-screen/trackers'
     import { navigate } from 'svelte-navigator'
     import { showTime } from '../util/time'
@@ -10,13 +10,12 @@
 
     export let trackerId: string
 
-    const tracker = trackers.find(it => it.id === trackerId)
+    let tracker: Tracker
+    $: tracker = trackers.find(it => it.id === trackerId)
+    $: if (!tracker) navigate('/')
 
-    if (!tracker) {
-        navigate('/')
-    }
-
-    const entry: TrackerEntry = {
+    let entry: TrackerEntry
+    $: entry = {
         time: new Date().getTime(),
         value: tracker.meta.mainField.default,
         tags: [],
