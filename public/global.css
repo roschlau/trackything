@@ -18,6 +18,7 @@ body {
     --color-text-secondary-light-background: hsla(0, 0%, 0%, .54);
     --color-text-disabled-hint-light-background: hsla(0, 0%, 0%, .38);
 
+    --color-divider: hsla(0, 0%, 100%, .12);
     --color-surface04dp: linear-gradient(0deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09)), #121212;
 
     margin: 0;
@@ -74,6 +75,7 @@ input[type="text"], input[type="email"], textarea {
     color: var(--color-text-primary);
     resize: none;
     border: 2px solid transparent;
+    transition: all .1s;
 }
 
 input[type="text"]:focus, input[type="email"]:focus, textarea:focus {

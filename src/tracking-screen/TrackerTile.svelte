@@ -44,7 +44,13 @@
     place-content: center;
     color: var(--color-primary);
     font-size: 24px;
+    text-decoration: none;
     overflow: hidden;
+
+    &:focus {
+      border-width: 2px;
+      font-weight: 500;
+    }
 
     &::after {
       content: '';
@@ -70,13 +76,13 @@
 </style>
 
 <a
-    href="/record/{tracker.id}"
+    href="/tracker/{tracker.id}"
     class="tracker"
     use:primaryColor={tracker.meta.color}
     use:link
 >
     <span class="tracker-name font-body-bold">{tracker.meta.name}</span>
-    <span class="center-plus">+</span>
+    <a href="/record/{tracker.id}" class="center-plus" use:link>+</a>
     <span class="last-entry">
         {#if lastEntry}
             Last Entry: <span class="last-entry-value">{ relativeTime(lastEntry.time) }</span>

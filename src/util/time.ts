@@ -17,7 +17,7 @@ const days = [
     'Saturday',
 ]
 
-export function relativeTime(time: number): string {
+export function relativeTime(time: number, accuracy: 'minute' | 'day' = 'minute'): string {
     const now = new Date()
     const then = new Date(time)
     const diffMillis = now.getTime() - then.getTime()
@@ -26,7 +26,7 @@ export function relativeTime(time: number): string {
         // Might be today
         if (now.getDate() === then.getDate()) {
             // Yup, today.
-            return showTime(then)
+            return accuracy === 'minute' ? showTime(then) : 'Today'
         }
     }
     if (diffMillis < oneDay * 2) {
@@ -42,4 +42,17 @@ export function relativeTime(time: number): string {
         return 'Last Year'
     }
     return then.getFullYear().toString()
+}
+
+export function areSameDay(date1: Date | number, date2: Date | number): boolean {
+    const d1 = coerceDate(date1)
+    const d2 = coerceDate(date2)
+    return d1.getFullYear() === d2.getFullYear()
+        && d1.getMonth() === d2.getMonth()
+        && d1.getDate() === d2.getDate()
+}
+
+function coerceDate(date: Date | number): Date {
+    if (typeof date !== 'number') return date
+    return new Date(date)
 }

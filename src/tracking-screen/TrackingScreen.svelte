@@ -21,7 +21,7 @@
   .new-tracker-button {
     width: 100%;
     height: 100%;
-    border: 1px solid hsla(0, 0, 100%, .12);
+    border: 1px solid var(--color-divider);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
