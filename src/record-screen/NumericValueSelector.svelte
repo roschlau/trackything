@@ -13,7 +13,7 @@
         dispatch('valueSelected', value)
     }
 
-    let percentage: number
+    let fraction: number
     $: fraction = (selectedValue - field.min) / (field.max - field.min)
 
     function decrement() {
