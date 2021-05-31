@@ -99,7 +99,7 @@
           background: var(--color-primary);
           color: var(--color-text-primary-light-background);
           font-weight: 500;
-          @include focus-border(var(--color-text-disabled-hint-light-background));
+          @include focus-border(var(--color-text-secondary));
         }
       }
     }
