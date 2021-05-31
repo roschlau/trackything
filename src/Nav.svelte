@@ -62,11 +62,11 @@
 
 <nav>
     <Link to="/" class="nav-link">
-        <img src="{$trackMatch ? '/icons/edit_primary.svg' : '/icons/edit_default.svg'}" alt="Track"/>
+        <img src="{$trackMatch ? '/icons/edit_primary.svg' : '/icons/edit_default.svg'}" alt="Track" width="24" height="24"/>
         Track
     </Link>
     <Link to="/analyze" class="nav-link">
-        <img src="{$analyzeMatch ? '/icons/analyze_primary.svg' : '/icons/analyze_default.svg'}" alt="Analyze"/>
+        <img src="{$analyzeMatch ? '/icons/analyze_primary.svg' : '/icons/analyze_default.svg'}" alt="Analyze" width="24" height="24"/>
         Analyze
     </Link>
 </nav>
