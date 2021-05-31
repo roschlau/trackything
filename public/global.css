@@ -2,7 +2,11 @@ body {
     --font-heading: 'Comfortaa', sans-serif;
     --font-body: 'Assistant', sans-serif;
 
-    --color-primary: hsl(346, 100%, 71%);
+    --color-pink: hsl(346, 100%, 71%);
+    --color-teal: hsl(158, 75%, 79%);
+    --color-peach: hsl(39, 86%, 74%);
+    --color-blue: hsl(200, 87%, 82%);
+    --color-primary: var(--color-pink);
     --color-error: hsl(0, 95%, 68%);
     --color-background: hsl(0, 0%, 7%);
 

@@ -6,6 +6,7 @@
     import { autoresize } from '../util/autoresize'
     import MoodSelector from './MoodSelector.svelte'
     import NumericValueSelector from './NumericValueSelector.svelte'
+    import { primaryColor } from '../style-helpers/primary-color'
 
     export let trackerId: string
 
@@ -42,6 +43,7 @@
 
 <style lang="scss">
   @import "src/style-helpers/focus";
+
   .screen {
     flex-grow: 1;
     display: flex;
@@ -133,24 +135,31 @@
 
       @include focus-border-after(4px);
 
+      > svg {
+        margin-right: 12px;
+        transform: translateY(-1px);
+      }
+
       &.discard {
         color: var(--color-text-secondary);
       }
 
       &.save {
         color: var(--color-primary);
-      }
 
-      > svg {
-        margin-right: 12px;
-        transform: translateY(-1px);
+        > svg {
+          fill: var(--color-primary);
+        }
       }
     }
   }
 </style>
 
 {#if tracker}
-    <div class="screen">
+    <div
+        class="screen"
+        use:primaryColor={tracker.meta.color}
+    >
         <h1>New Entry</h1>
         <div class="tracker-name-indicator">
             Tracker: <span class="tracker-name font-body-bold">{tracker.meta.name}</span>
@@ -206,7 +215,9 @@
                 on:click={discard}
             >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="white" fill-opacity="0.6"/>
+                    <path
+                        d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+                        fill="white" fill-opacity="0.6"/>
                 </svg>
                 Close
             </button>
@@ -215,7 +226,7 @@
                 on:click={saveEntry}
             >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z" fill="#FF6A8E"/>
+                    <path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/>
                 </svg>
                 Save
             </button>

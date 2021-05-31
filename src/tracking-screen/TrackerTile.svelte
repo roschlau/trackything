@@ -2,6 +2,7 @@
     import type { Tracker } from './trackers'
     import { link } from 'svelte-navigator'
     import { relativeTime } from '../util/time'
+    import { primaryColor } from '../style-helpers/primary-color'
 
     export let tracker: Tracker
     const lastEntry = tracker.entries[0]
@@ -67,7 +68,12 @@
   }
 </style>
 
-<a href="/record/{tracker.id}" class="tracker" use:link>
+<a
+    href="/record/{tracker.id}"
+    class="tracker"
+    use:primaryColor={tracker.meta.color}
+    use:link
+>
     <span class="tracker-name font-body-bold">{tracker.meta.name}</span>
     <span class="center-plus">+</span>
     <span class="last-entry">
