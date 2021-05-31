@@ -28,6 +28,7 @@
     display: block;
     margin: 10px;
     font-size: 18px;
+    color: var(--color-primary);
   }
 
   .center-plus {
