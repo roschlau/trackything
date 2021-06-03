@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { NumericField, Tracker, TrackerEntry } from '../tracking-screen/trackers'
+    import type { NumericField, Tracker, TrackerEntry } from '../data/trackers'
     import { showTime } from '../util/time'
 
     export let entry: TrackerEntry

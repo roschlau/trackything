@@ -1,3 +1,6 @@
+import { v4 as randomUuid } from 'uuid'
+import type { Tracker, TrackerEntry, TrackerMeta } from './trackers'
+
 export const trackers: Tracker[] = [
     randomDummyTracker('1', {
         name: 'Sleep',
@@ -39,62 +42,23 @@ function randomDummyTracker(id: string, meta: TrackerMeta) {
     return Object.freeze({
         id: id,
         meta: meta,
-        entries: offsets.map(time => (<TrackerEntry>{
-            time,
-            value: meta.mainField.type === 'numeric'
-                ? meta.mainField.min + Math.round(Math.random() * (meta.mainField.max - meta.mainField.min))
-                : Math.round(Math.random() * 5),
-            tags: pickRandom(meta.tags),
-            comment: '',
-        })),
+        entries: [] /*offsets.map(time => createRandomDummyEntry(id, time, meta))*/,
     })
+}
+
+function createRandomDummyEntry(id: string, time: number, meta: TrackerMeta): TrackerEntry {
+    return {
+        id: randomUuid(),
+        trackerId: id,
+        time,
+        value: meta.mainField.type === 'numeric'
+            ? meta.mainField.min + Math.round(Math.random() * (meta.mainField.max - meta.mainField.min))
+            : Math.round(Math.random() * 5),
+        tags: pickRandom(meta.tags),
+        comment: '',
+    }
 }
 
 function pickRandom<T>(collection: T[]): T[] {
     return collection.filter(() => Math.random() > .5)
-}
-
-export interface Tracker {
-    id: string
-    meta: TrackerMeta
-    entries: TrackerEntry[]
-}
-
-export interface TrackerEntry {
-    time: number
-    value: number
-    tags: string[]
-    comment: string
-}
-
-export interface TrackerMeta {
-    name: string
-    color: TrackerColor
-    mainField: FieldDefinition
-    tags: string[]
-}
-
-export type TrackerColor =
-    | 'teal'
-    | 'peach'
-    | 'blue'
-
-export type FieldDefinition =
-    | MoodField
-    | NumericField
-
-export interface MoodField {
-    type: 'mood'
-    name: string
-    default: number
-}
-
-export interface NumericField {
-    type: 'numeric'
-    name: string
-    unit: string
-    default: number
-    min: number
-    max: number
-    step: number
 }

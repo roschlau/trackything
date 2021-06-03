@@ -1,4 +1,4 @@
-import type { TrackerColor } from '../tracking-screen/trackers'
+import type { TrackerColor } from '../data/trackers'
 
 const propName = '--color-primary'
 export function primaryColor(node: HTMLElement, color: TrackerColor) {

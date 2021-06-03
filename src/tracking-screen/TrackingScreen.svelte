@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { trackers } from './trackers'
     import TrackerTile from './TrackerTile.svelte'
+    import { trackersStore } from '../data/stores'
 </script>
 
 <style lang="scss">
@@ -50,7 +50,7 @@
 </h1>
 
 <ul class="trackers-list">
-    {#each trackers as tracker (tracker.id)}
+    {#each $trackersStore as tracker (tracker.trackerId)}
         <li class="square">
             <TrackerTile {tracker}/>
         </li>

@@ -1,12 +1,13 @@
 <script lang="ts">
-    import type { Tracker } from './trackers'
+    import type { TrackerEntry} from '../data/trackers'
     import { link } from 'svelte-navigator'
     import { relativeTime } from '../util/time'
     import { primaryColor } from '../style-helpers/primary-color'
+    import { TrackerStore } from '../data/stores'
 
-    export let tracker: Tracker
-    const lastEntry = tracker.entries[0]
-
+    export let tracker: TrackerStore
+    let lastEntry: TrackerEntry
+    $: lastEntry = $tracker?.entries[0]
 </script>
 
 <style lang="scss">
@@ -75,19 +76,21 @@
   }
 </style>
 
-<a
-    href="/tracker/{tracker.id}"
-    class="tracker"
-    use:primaryColor={tracker.meta.color}
-    use:link
->
-    <span class="tracker-name font-body-bold">{tracker.meta.name}</span>
-    <a href="/record/{tracker.id}" class="center-plus" use:link>+</a>
-    <span class="last-entry">
+{#if $tracker}
+    <a
+        href="/tracker/{$tracker.id}"
+        class="tracker"
+        use:primaryColor={$tracker.meta.color}
+        use:link
+    >
+        <span class="tracker-name font-body-bold">{$tracker.meta.name}</span>
+        <a href="/record/{$tracker.id}" class="center-plus" use:link>+</a>
+        <span class="last-entry">
         {#if lastEntry}
             Last Entry: <span class="last-entry-value">{ relativeTime(lastEntry.time) }</span>
         {:else}
             No Entries
         {/if}
-    </span>
-</a>
+        </span>
+    </a>
+{/if}

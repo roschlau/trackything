@@ -1,6 +1,6 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte'
-    import type { NumericField } from '../tracking-screen/trackers'
+    import type { NumericField } from '../data/trackers'
 
     export let selectedValue: number
     export let field: NumericField
