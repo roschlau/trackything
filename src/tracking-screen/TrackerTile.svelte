@@ -3,7 +3,7 @@
     import { link } from 'svelte-navigator'
     import { relativeTime } from '../util/time'
     import { primaryColor } from '../style-helpers/primary-color'
-    import { TrackerStore } from '../data/stores'
+    import type { TrackerStore } from '../data/stores'
 
     export let tracker: TrackerStore
     let lastEntry: TrackerEntry

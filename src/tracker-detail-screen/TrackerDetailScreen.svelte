@@ -1,7 +1,8 @@
 <script lang="ts">
     import { primaryColor } from '../style-helpers/primary-color'
     import TrackerTimeline from './TrackerTimeline.svelte'
-    import { trackerStore, TrackerStore } from '../data/stores'
+    import { trackerStore } from '../data/stores'
+    import type {  TrackerStore } from '../data/stores'
 
     export let trackerId: string
 

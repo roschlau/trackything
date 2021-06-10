@@ -5,19 +5,19 @@ export const trackers: Tracker[] = [
     randomDummyTracker('1', {
         name: 'Sleep',
         color: 'teal',
-        mainField: { type: 'mood', name: 'Quality', default: 2 },
+        mainField: { name: 'Quality', unit: '', default: 2, min: 0, max: 4, step: 1 },
         tags: ['With Partner', 'Woke Up Naturally', 'Didn\'t sleep through', 'Bad Dreams'],
     }),
     randomDummyTracker('2', {
         name: 'Water',
         color: 'blue',
-        mainField: { type: 'numeric', name: 'Amount', unit: 'ml', default: 200, min: 0, max: 1000, step: 100 },
+        mainField: { name: 'Amount', unit: 'ml', default: 200, min: 0, max: 1000, step: 100 },
         tags: [],
     }),
     randomDummyTracker('3', {
         name: 'Activity',
         color: 'peach',
-        mainField: { type: 'numeric', name: 'Duration', unit: 'min', default: 30, min: 0, max: 240, step: 10 },
+        mainField: { name: 'Duration', unit: 'min', default: 30, min: 0, max: 240, step: 10 },
         tags: ['Walk', 'Bike', 'VR - intense', 'VR - casual'],
     }),
 ]
@@ -51,9 +51,7 @@ function createRandomDummyEntry(id: string, time: number, meta: TrackerMeta): Tr
         id: randomUuid(),
         trackerId: id,
         time,
-        value: meta.mainField.type === 'numeric'
-            ? meta.mainField.min + Math.round(Math.random() * (meta.mainField.max - meta.mainField.min))
-            : Math.round(Math.random() * 5),
+        value: meta.mainField.min + Math.round(Math.random() * (meta.mainField.max - meta.mainField.min)),
         tags: pickRandom(meta.tags),
         comment: '',
     }

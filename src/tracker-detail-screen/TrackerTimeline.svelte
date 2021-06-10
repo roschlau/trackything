@@ -62,20 +62,12 @@
         Add Entry
     </Link>
     {#each today as entry (entry.time)}
-        {#if tracker.meta.mainField.type === 'numeric'}
-            <NumericEntrySummaryTile {entry} tracker="{tracker}"/>
-        {:else}
-            // TODO: implement summary tile for {tracker.meta.mainField.type}<br>
-        {/if}
+        <NumericEntrySummaryTile {entry} tracker="{tracker}"/>
     {/each}
     {#each notToday as [heading, entries] (heading)}
         <h2 class="time-block-heading">{heading}</h2>
         {#each entries as entry (entry.time)}
-            {#if tracker.meta.mainField.type === 'numeric'}
-                <NumericEntrySummaryTile {entry} tracker="{tracker}"/>
-            {:else}
-                // TODO: implement summary tile for {tracker.meta.mainField.type}<br>
-            {/if}
+            <NumericEntrySummaryTile {entry} tracker="{tracker}"/>
         {/each}
     {/each}
 </div>

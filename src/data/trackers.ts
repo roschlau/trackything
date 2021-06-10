@@ -16,7 +16,7 @@ export interface TrackerEntry {
 export interface TrackerMeta {
     name: string
     color: TrackerColor
-    mainField: FieldDefinition
+    mainField: NumericField
     tags: string[]
 }
 
@@ -26,18 +26,7 @@ export type TrackerColor =
     | 'peach'
     | 'blue'
 
-export type FieldDefinition =
-    | MoodField
-    | NumericField
-
-export interface MoodField {
-    type: 'mood'
-    name: string
-    default: number
-}
-
 export interface NumericField {
-    type: 'numeric'
     name: string
     unit: string
     default: number

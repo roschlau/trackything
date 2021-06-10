@@ -4,7 +4,6 @@
 
     export let entry: TrackerEntry
     export let tracker: Tracker
-    $: if (tracker.meta.mainField.type !== 'numeric') throw Error('Wrong tracker type ' + tracker.meta.mainField.type)
 </script>
 
 <style lang="scss">

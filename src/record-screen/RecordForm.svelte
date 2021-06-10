@@ -2,7 +2,6 @@
     import type { Tracker, TrackerEntry } from '../data/trackers'
     import { showTime } from '../util/time'
     import { autoresize } from '../util/autoresize'
-    import MoodSelector from './MoodSelector.svelte'
     import NumericValueSelector from './NumericValueSelector.svelte'
     import { v4 as randomUuid } from 'uuid'
     import { navigate } from 'svelte-navigator'
@@ -154,18 +153,11 @@
 </div>
 <div class="field">
     <div class="field-name">{tracker.meta.mainField.name}</div>
-    {#if tracker.meta.mainField.type === 'mood'}
-        <MoodSelector
-            selectedValue="{entry.value}"
-            on:moodSelected={(event) => entry.value = event.detail}
-        />
-    {:else if tracker.meta.mainField.type === 'numeric' }
-        <NumericValueSelector
-            selectedValue="{entry.value}"
-            field="{tracker.meta.mainField}"
-            on:valueSelected={(event) => entry.value = event.detail}
-        />
-    {/if}
+    <NumericValueSelector
+        selectedValue="{entry.value}"
+        field="{tracker.meta.mainField}"
+        on:valueSelected={(event) => entry.value = event.detail}
+    />
 </div>
 {#if tracker.meta.tags.length > 0}
     <div class="field">
