@@ -9,6 +9,7 @@
     import AnalyzeScreen from './AnalyzeScreen.svelte'
     import RecordScreen from './record-screen/RecordScreen.svelte'
     import TrackerDetailScreen from './tracker-detail-screen/TrackerDetailScreen.svelte'
+    import SettingsScreen from './settings/SettingsScreen.svelte'
 </script>
 
 <style lang="scss">
@@ -30,6 +31,7 @@
     <main>
         <Route path="/record/:trackerId" component="{RecordScreen}"/>
         <Route path="/tracker/:trackerId" component="{TrackerDetailScreen}"/>
+        <Route path="/settings" component="{SettingsScreen}"/>
         <Route path="/*">
             <Route path="/">
                 <TrackingScreen/>

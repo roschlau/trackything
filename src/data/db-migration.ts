@@ -1,4 +1,4 @@
-import { DBSchema, IDBPDatabase, openDB } from 'idb'
+import { DBSchema, deleteDB, IDBPDatabase, openDB } from 'idb'
 import type { TrackerEntry, TrackerMeta } from './trackers'
 import { trackers } from './dummy-data'
 
@@ -19,9 +19,11 @@ interface Schema extends DBSchema {
 
 export const db = setUpDb()
 
+const dbName = 'trackything_main_db'
+
 async function setUpDb(): Promise<IDBPDatabase<Schema>> {
     await requestPersistentStoragePermission()
-    return await openDB<Schema>('trackything_main_db', 1, {
+    return await openDB<Schema>(dbName, 1, {
         upgrade: (db, oldVersion, newVersion, tx) => {
             if (oldVersion < 1) {
                 v1(db)
@@ -34,6 +36,10 @@ async function setUpDb(): Promise<IDBPDatabase<Schema>> {
             }
         },
     })
+}
+
+export async function deleteMainDB() {
+    await deleteDB(dbName)
 }
 
 function v1(db: IDBPDatabase<Schema>) {

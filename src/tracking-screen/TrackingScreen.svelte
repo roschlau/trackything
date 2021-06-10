@@ -1,6 +1,7 @@
 <script lang="ts">
     import TrackerTile from './TrackerTile.svelte'
     import { trackersStore } from '../data/stores'
+    import { Link } from 'svelte-navigator'
 </script>
 
 <style lang="scss">
@@ -45,9 +46,9 @@
   }
 </style>
 
-<h1>
-    trackything
-</h1>
+<Link to="settings">
+    <h1>trackything</h1>
+</Link>
 
 <ul class="trackers-list">
     {#each $trackersStore as tracker (tracker.trackerId)}
