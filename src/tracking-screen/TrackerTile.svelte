@@ -22,7 +22,7 @@
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
-    @include focus-border()
+    @include focus-border;
   }
 
   .tracker-name {
