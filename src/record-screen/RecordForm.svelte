@@ -5,7 +5,8 @@
     import NumericValueSelector from './NumericValueSelector.svelte'
     import { v4 as randomUuid } from 'uuid'
     import { navigate } from 'svelte-navigator'
-    import { createEventDispatcher } from 'svelte'
+    import { createEventDispatcher, tick } from 'svelte'
+    import { trackerStore } from '../data/stores'
 
     export let tracker: Tracker
 
@@ -27,6 +28,18 @@
         } else {
             entry.tags = [...entry.tags, tag]
         }
+    }
+
+    async function addTag() {
+        const tag = prompt('Enter New Tag:')
+        if (!tag) {
+            return
+        }
+        entry.tags.push(tag)
+        await trackerStore(tracker.id).setMeta({
+            ...tracker.meta,
+            tags: [...tracker.meta.tags, tag],
+        })
     }
 
     function discard() {
@@ -90,8 +103,20 @@
           background: var(--color-primary);
           color: var(--color-text-primary-light-background);
           font-weight: 500;
-          @include focus-border(var(--color-text-secondary));
+          @include focus-border(solid, transparent, var(--color-text-primary-light-background));
         }
+      }
+
+      .new-tag-button {
+        margin: 6px;
+        border-radius: 8px;
+        padding: 6px 10px;
+        color: var(--color-text-disabled-hint);
+        font-size: 18px;
+        font-family: var(--font-body);
+        font-weight: 300;
+
+        @include focus-border(dashed, var(--color-divider));
       }
     }
 
@@ -159,22 +184,26 @@
         on:valueSelected={(event) => entry.value = event.detail}
     />
 </div>
-{#if tracker.meta.tags.length > 0}
-    <div class="field">
-        <div class="field-name">Tags</div>
-        <div class="tags">
-            {#each tracker.meta.tags as tag (tag)}
-                <button
-                    class="tag"
-                    class:selected={entry.tags.includes(tag)}
-                    on:click={() => toggleTag(tag)}
-                >
-                    {tag}
-                </button>
-            {/each}
-        </div>
+<div class="field">
+    <div class="field-name">Tags</div>
+    <div class="tags">
+        {#each tracker.meta.tags as tag (tag)}
+            <button
+                class="tag"
+                class:selected={entry.tags.includes(tag)}
+                on:click={() => toggleTag(tag)}
+            >
+                {tag}
+            </button>
+        {/each}
+        <button
+            class="new-tag-button"
+            on:click={addTag}
+        >
+            + New Tag
+        </button>
     </div>
-{/if}
+</div>
 <div class="field">
     <div class="field-name">Comment</div>
     <textarea

@@ -12,7 +12,7 @@ const defaultTrackers: TrackerMeta[] = [
         name: 'Sleep',
         color: 'teal',
         mainField: { name: 'Quality', unit: '', default: 2, min: 0, max: 4, step: 1 },
-        tags: ['With Partner', 'Woke Up Naturally', 'Didn\'t sleep through', 'Bad Dreams'],
+        tags: [],
     },
     {
         name: 'Water',
@@ -24,6 +24,6 @@ const defaultTrackers: TrackerMeta[] = [
         name: 'Activity',
         color: 'peach',
         mainField: { name: 'Duration', unit: 'min', default: 30, min: 0, max: 240, step: 10 },
-        tags: ['Walk', 'Bike', 'VR - intense', 'VR - casual'],
+        tags: [],
     },
 ]

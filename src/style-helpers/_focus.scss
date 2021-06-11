@@ -1,7 +1,13 @@
-@mixin focus-border($color: var(--color-text-disabled-hint), $width: 2px) {
-  border: $width solid transparent;
+@mixin focus-border(
+  $defaultStyle: solid,
+  $defaultColor: transparent,
+  $color: var(--color-text-disabled-hint),
+  $width: 2px,
+) {
+  border: $width $defaultStyle $defaultColor;
   transition: border .1s;
   &:focus-within {
+    border-style: solid;
     border-color: $color;
   }
 }
