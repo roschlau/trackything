@@ -18,8 +18,18 @@
         tags: [],
     }
 
-    let formValid: boolean
-    $: formValid = !!tracker.name && !!tracker.mainField.name
+    const defaultValid = (tracker: TrackerMeta) =>
+        tracker.mainField.default >= tracker.mainField.min
+        && tracker.mainField.default <= tracker.mainField.max
+
+    const minMaxValid = (tracker: TrackerMeta) =>
+        tracker.mainField.min < tracker.mainField.max
+
+    const formValid = (tracker: TrackerMeta) =>
+        !!tracker.name
+        && !!tracker.mainField.name
+        && minMaxValid(tracker)
+        && defaultValid(tracker)
 
     function discard() {
         navigate(-1)
@@ -92,6 +102,7 @@
     .field + .field {
       margin-left: 12px;
     }
+
     .field {
       padding: 0;
       flex-basis: 0;
@@ -190,17 +201,29 @@
     <div class="field-row">
         <div class="field">
             <div class="field-name">Minimum Value</div>
-            <input type="number" bind:value={tracker.mainField.min}>
+            <input
+                type="number"
+                bind:value={tracker.mainField.min}
+                class:validation-failed={!minMaxValid(tracker)}
+            >
         </div>
         <div class="field">
             <div class="field-name">Maximum Value</div>
-            <input type="number" bind:value={tracker.mainField.max}>
+            <input
+                type="number"
+                bind:value={tracker.mainField.max}
+                class:validation-failed={!minMaxValid(tracker)}
+            >
         </div>
     </div>
     <div class="field-row">
         <div class="field">
             <div class="field-name">Default Value</div>
-            <input type="number" bind:value={tracker.mainField.default}>
+            <input
+                type="number"
+                bind:value={tracker.mainField.default}
+                class:validation-failed={!defaultValid(tracker)}
+            >
         </div>
         <div class="field">
             <div class="field-name">Step Size</div>
@@ -222,7 +245,7 @@
         </button>
         <button
             class="save font-heading-regular"
-            disabled="{!formValid}"
+            disabled="{!formValid(tracker)}"
             on:click={saveTracker}
         >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

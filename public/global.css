@@ -93,7 +93,7 @@ input[type="text"].validation-failed,
 input[type="email"].validation-failed,
 input[type="number"].validation-failed,
 textarea.validation-failed {
-    border-color: var(--color-error);
+    border-color: var(--color-error) !important;
 }
 
 input[type="number"] {
