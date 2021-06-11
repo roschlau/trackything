@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "build": "rollup -c",
-    "deploy": "rollup -c && surge --project ./public",
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear --single",
     "validate": "svelte-check"
