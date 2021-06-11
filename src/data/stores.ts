@@ -1,15 +1,28 @@
 import { Readable, writable } from 'svelte/store'
 import { db } from './db-migration'
 import type { Tracker, TrackerEntry, TrackerMeta } from './trackers'
+import { v1, v4 } from 'uuid'
 
-export const trackersStore: Readable<TrackerStore[]> = function () {
-    const { subscribe, set } = writable([])
+interface TrackersStore extends Readable<TrackerStore[]> {
+    addTracker(meta: TrackerMeta): Promise<void>
+}
+
+export const trackersStore: TrackersStore = function () {
+    const { subscribe, set, update } = writable([])
     db.then(async db => {
         const trackerIds = await db.getAllKeys('tracker')
         set(trackerIds.map(trackerId => trackerStore(trackerId)))
     })
-    return { subscribe }
+    return {
+        subscribe,
+        async addTracker(meta: TrackerMeta) {
+            const id = v1()
+            await (await db).add('tracker', meta, id)
+            update(previousStores => [...previousStores, trackerStore(id)])
+        },
+    }
 }()
+
 const trackerStores = new Map<string, TrackerStore>()
 
 export function trackerStore(id: string): TrackerStore {

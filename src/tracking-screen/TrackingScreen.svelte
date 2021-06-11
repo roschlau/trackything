@@ -6,6 +6,7 @@
 
 <style lang="scss">
   @import "src/style-helpers/square";
+  @import "src/style-helpers/focus";
 
   .square {
     width: 100%;
@@ -19,30 +20,35 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 
-  .new-tracker-button {
+  .trackers-list :global(.new-tracker-button) {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--color-divider);
+    border: 2px dashed var(--color-divider);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--color-text-secondary);
+    color: var(--color-text-disabled-hint);
+  }
 
-    .button-text {
-      display: block;
-      margin: 12px;
-      font-size: 18px;
-    }
+  .trackers-list :global(.new-tracker-button:focus) {
+    border: 2px solid var(--color-text-disabled-hint);
+  }
 
-    .plus-sign {
-      display: block;
-      position: absolute;
-      bottom: 50%;
-      right: 50%;
-      transform: translate(50%, 50%);
-      font-size: 24px;
-    }
+  .trackers-list :global(.new-tracker-button .button-text) {
+    display: block;
+    margin: 12px;
+    font-size: 18px;
+  }
+
+  .trackers-list :global(.new-tracker-button .plus-sign) {
+    display: block;
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
+    font-size: 42px;
+    color: var(--color-text-disabled-hint);
   }
 </style>
 
@@ -56,10 +62,10 @@
             <TrackerTile {tracker}/>
         </li>
     {/each}
-<!--    <li class="square">-->
-<!--        <button class="new-tracker-button">-->
-<!--            <span class="button-text font-body-bold">New Tracker</span>-->
-<!--            <span class="plus-sign">+</span>-->
-<!--        </button>-->
-<!--    </li>-->
+    <li class="square">
+        <Link to="/tracker/new" class="new-tracker-button">
+            <span class="button-text font-body-bold">New Tracker</span>
+            <span class="plus-sign">+</span>
+        </Link>
+    </li>
 </ul>

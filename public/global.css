@@ -66,7 +66,10 @@ a {
     text-decoration: none;
 }
 
-input[type="text"], input[type="email"], textarea {
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
     border-radius: 8px;
     padding: 10px;
     background: var(--color-surface04dp);
@@ -79,12 +82,22 @@ input[type="text"], input[type="email"], textarea {
     transition: all .1s;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+textarea:focus {
     border-color: var(--color-text-disabled-hint);
 }
 
-input[type="text"].validation-failed, input[type="email"].validation-failed, textarea.validation-failed {
+input[type="text"].validation-failed,
+input[type="email"].validation-failed,
+input[type="number"].validation-failed,
+textarea.validation-failed {
     border-color: var(--color-error);
+}
+
+input[type="number"] {
+    text-align: end;
 }
 
 button {
