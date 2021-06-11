@@ -11,7 +11,7 @@ const defaultTrackers: TrackerMeta[] = [
     {
         name: 'Sleep',
         color: 'teal',
-        mainField: { name: 'Quality', unit: '', default: 2, min: 0, max: 4, step: 1 },
+        mainField: { name: 'Quality', unit: '', default: 3, min: 1, max: 5, step: 1 },
         tags: [],
     },
     {
