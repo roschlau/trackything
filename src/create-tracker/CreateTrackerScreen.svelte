@@ -23,7 +23,7 @@
         && tracker.mainField.default <= tracker.mainField.max
 
     const minMaxValid = (tracker: TrackerMeta) =>
-        tracker.mainField.min < tracker.mainField.max
+        tracker.mainField.min <= tracker.mainField.max
 
     const formValid = (tracker: TrackerMeta) =>
         !!tracker.name
