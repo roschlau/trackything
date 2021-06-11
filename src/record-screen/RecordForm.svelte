@@ -12,7 +12,7 @@
     const dispatch = createEventDispatcher()
 
     let entry: TrackerEntry
-    $: entry = {
+    $: entry = entry && entry.trackerId === tracker.id ? entry : {
         id: randomUuid(),
         trackerId: tracker.id,
         time: new Date().getTime(),
