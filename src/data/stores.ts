@@ -1,5 +1,5 @@
 import { Readable, writable } from 'svelte/store'
-import { db } from './db-migration'
+import { db } from './idb'
 import type { Tracker, TrackerEntry, TrackerMeta } from './trackers'
 import { v1, v4 } from 'uuid'
 

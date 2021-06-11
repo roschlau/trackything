@@ -2,6 +2,7 @@
     import TrackerTile from './TrackerTile.svelte'
     import { trackersStore } from '../data/stores'
     import { Link } from 'svelte-navigator'
+    import { addDefaultTrackers } from '../data/default-trackers'
 </script>
 
 <style lang="scss">
@@ -18,6 +19,16 @@
     display: grid;
     grid-gap: 16px;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+    &.empty {
+      grid-template-columns: 1fr;
+      justify-content: center;
+      justify-items: center;
+
+      > * {
+        max-width: 220px;
+      }
+    }
   }
 
   .trackers-list :global(.new-tracker-button) {
@@ -56,12 +67,20 @@
     <h1>trackything</h1>
 </Link>
 
-<ul class="trackers-list">
+<ul class="trackers-list" class:empty={$trackersStore.length === 0}>
     {#each $trackersStore as tracker (tracker.trackerId)}
         <li class="square">
             <TrackerTile {tracker}/>
         </li>
     {/each}
+    {#if $trackersStore.length === 0}
+        <li class="square">
+            <button on:click={addDefaultTrackers} class="new-tracker-button">
+                <span class="button-text font-body-bold">Add Default Trackers</span>
+                <span class="plus-sign">+</span>
+            </button>
+        </li>
+    {/if}
     <li class="square">
         <Link to="/tracker/new" class="new-tracker-button">
             <span class="button-text font-body-bold">New Tracker</span>

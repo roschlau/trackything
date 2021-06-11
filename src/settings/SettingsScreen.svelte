@@ -1,6 +1,6 @@
 <script lang="ts">
     import { useNavigate } from 'svelte-navigator'
-    import { deleteMainDB } from '../data/db-migration'
+    import { deleteMainDB } from '../data/idb'
 
     const navigate = useNavigate()
 

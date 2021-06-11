@@ -1,6 +1,5 @@
 import { DBSchema, deleteDB, IDBPDatabase, openDB } from 'idb'
 import type { TrackerEntry, TrackerMeta } from './trackers'
-import { trackers } from './dummy-data'
 
 interface Schema extends DBSchema {
     tracker: {
@@ -25,15 +24,7 @@ async function setUpDb(): Promise<IDBPDatabase<Schema>> {
     await requestPersistentStoragePermission()
     return await openDB<Schema>(dbName, 1, {
         upgrade: (db, oldVersion, newVersion, tx) => {
-            if (oldVersion < 1) {
-                v1(db)
-                trackers.forEach(tracker => {
-                    tx.objectStore('tracker').put(tracker.meta, tracker.id)
-                    tracker.entries.forEach(entry => {
-                        tx.objectStore('entry').put(entry)
-                    })
-                })
-            }
+            if (oldVersion < 1) v1(db)
         },
     })
 }
