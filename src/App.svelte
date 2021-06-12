@@ -3,7 +3,6 @@
     This is the main component with a doc comment.
 -->
 <script lang="ts">
-    import Nav from './Nav.svelte'
     import { Route, Router } from 'svelte-navigator'
     import TrackingScreen from './tracking-screen/TrackingScreen.svelte'
     import AnalyzeScreen from './AnalyzeScreen.svelte'
@@ -34,15 +33,7 @@
         <Route path="/tracker/new" component="{CreateTrackerScreen}"/>
         <Route path="/tracker/:trackerId" component="{TrackerDetailScreen}"/>
         <Route path="/settings" component="{SettingsScreen}"/>
-        <Route path="/*">
-            <Route path="/">
-                <TrackingScreen/>
-            </Route>
-            <Route path="/analyze">
-                <AnalyzeScreen/>
-            </Route>
-            <div aria-hidden="true" class="spacer"></div>
-            <Nav/>
-        </Route>
+        <Route path="/analyze" component="{AnalyzeScreen}"/>
+        <Route path="/" component="{TrackingScreen}"/>
     </main>
 </Router>
