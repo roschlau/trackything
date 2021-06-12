@@ -32,7 +32,7 @@ export function trackerStore(id: string): TrackerStore {
     const { subscribe, set, update } = writable(null)
     db.then(async db => {
         const meta = await db.get('tracker', id)
-        const entries = await db.getAllFromIndex('entry', 'by-trackerId', id)
+        const entries = (await db.getAllFromIndex('entry', 'by-trackerId', id)).reverse()
         set({ id, meta, entries })
     })
     const store = {
@@ -45,7 +45,7 @@ export function trackerStore(id: string): TrackerStore {
         async addEntry(entry: TrackerEntry) {
             if (entry.trackerId !== id) throw Error(`Tried adding entry of tracker ${entry.trackerId} to tracker ${id}`)
             await (await db).add('entry', entry)
-            const entries = await (await db).getAllFromIndex('entry', 'by-trackerId', id)
+            const entries = (await (await db).getAllFromIndex('entry', 'by-trackerId', id)).reverse()
             update(original => ({ ...original, entries }))
         },
     }
