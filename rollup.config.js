@@ -76,14 +76,7 @@ export default {
 
         // If we're building for production (npm run build
         // instead of npm run dev), minify
-        production && terser(),
-
-        // Enable catch-all for SPA deployment to surge
-        production && copy({
-            targets: [
-                { src: 'public/index.html', dest: 'public', rename: '200.html' }
-            ]
-        })
+        production && terser()
     ],
     watch: {
         clearScreen: false
