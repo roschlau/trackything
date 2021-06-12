@@ -40,11 +40,10 @@ function v1(db: IDBPDatabase<Schema>) {
     entries.createIndex('by-tags', 'tags', { multiEntry: true })
 }
 
+export let persistentStorageGranted = false
+
 async function requestPersistentStoragePermission() {
     if (navigator.storage && navigator.storage.persist) {
-        const isPersisted = await navigator.storage.persist()
-        if (!isPersisted && window) {
-            window.alert('Persistent storage permission not granted. Your data might not be safe from eviction.')
-        }
+        persistentStorageGranted = await navigator.storage.persist()
     }
 }

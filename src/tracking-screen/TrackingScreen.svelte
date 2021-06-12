@@ -3,6 +3,7 @@
     import { trackersStore } from '../data/stores'
     import { Link } from 'svelte-navigator'
     import { addDefaultTrackers } from '../data/default-trackers'
+    import { persistentStorageGranted } from '../data/idb'
 </script>
 
 <style lang="scss">
@@ -39,6 +40,11 @@
       font-size: 18px;
       color: var(--color-text-secondary);
     }
+
+    > :global(.action.alert) {
+      color: var(--color-error);
+    }
+
     > :global(.action .icon) {
       margin-right: 12px;
     }
