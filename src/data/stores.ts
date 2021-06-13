@@ -2,22 +2,28 @@ import { Readable, writable } from 'svelte/store'
 import { db, generateId } from './idb'
 import type { Tracker, TrackerEntry, TrackerMeta } from './trackers'
 
-interface TrackersStore extends Readable<TrackerStore[]> {
+export interface TrackersStore extends Readable<TrackerStore[]> {
     addTracker(meta: TrackerMeta): Promise<void>
+    addOrUpdateTracker(id: string, meta: TrackerMeta): Promise<void>
 }
 
 export const trackersStore: TrackersStore = function () {
     const { subscribe, set, update } = writable([])
-    db.then(async db => {
-        const trackerIds = await db.getAllKeys('tracker')
+    async function loadTrackers() {
+        const trackerIds = await (await db).getAllKeys('tracker')
         set(trackerIds.map(trackerId => trackerStore(trackerId)))
-    })
+    }
+    loadTrackers()
     return {
         subscribe,
         async addTracker(meta: TrackerMeta) {
             const id = generateId()
             await (await db).add('tracker', meta, id)
             update(previousStores => [...previousStores, trackerStore(id)])
+        },
+        async addOrUpdateTracker(id: string, meta: TrackerMeta) {
+            await (await db).put('tracker', meta, id)
+            await loadTrackers()
         },
     }
 }()
@@ -47,6 +53,12 @@ export function trackerStore(id: string): TrackerStore {
             const entries = (await (await db).getAllFromIndex('entry', 'by-trackerId', id)).reverse()
             update(original => ({ ...original, entries }))
         },
+        async addOrUpdateEntry(entry: TrackerEntry) {
+            if (entry.trackerId !== id) throw Error(`Tried adding entry of tracker ${entry.trackerId} to tracker ${id}`)
+            await (await db).put('entry', entry)
+            const entries = (await (await db).getAllFromIndex('entry', 'by-trackerId', id)).reverse()
+            update(original => ({ ...original, entries }))
+        },
     }
     trackerStores.set(id, store)
     return store
@@ -56,4 +68,5 @@ export interface TrackerStore extends Readable<Tracker | null> {
     trackerId: string
     setMeta(meta: TrackerMeta): Promise<void>
     addEntry(entry: TrackerEntry): Promise<void>
+    addOrUpdateEntry(entry: TrackerEntry): Promise<void>
 }
