@@ -22,9 +22,6 @@
     margin: 0 auto;
     min-height: 100%;
   }
-  .spacer {
-    flex-grow: 1;
-  }
 </style>
 
 <Router>
