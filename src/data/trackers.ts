@@ -13,11 +13,16 @@ export interface TrackerEntry {
     comment: string
 }
 
-export interface TrackerMeta {
+export interface TrackerMetaUpdate {
+    trackerId: string
     name: string
     color: TrackerColor
     mainField: NumericField
     tags: string[]
+}
+
+export interface TrackerMeta extends TrackerMetaUpdate {
+    createdAt: number
 }
 
 export type TrackerColor =

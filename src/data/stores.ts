@@ -1,9 +1,9 @@
 import { Readable, writable } from 'svelte/store'
 import { db, generateId } from './idb'
-import type { Tracker, TrackerEntry, TrackerMeta } from './trackers'
+import type { Tracker, TrackerEntry, TrackerMeta, TrackerMetaUpdate } from './trackers'
 
 export interface TrackersStore extends Readable<TrackerStore[]> {
-    addTracker(meta: TrackerMeta): Promise<void>
+    addTracker(meta: TrackerMetaUpdate): Promise<void>
     addOrUpdateTracker(id: string, meta: TrackerMeta): Promise<void>
 }
 
@@ -16,13 +16,13 @@ export const trackersStore: TrackersStore = function () {
     loadTrackers()
     return {
         subscribe,
-        async addTracker(meta: TrackerMeta) {
+        async addTracker(meta: TrackerMetaUpdate) {
             const id = generateId()
-            await (await db).add('tracker', meta, id)
+            await (await db).add('tracker', { ...meta, createdAt: new Date().getTime() })
             update(previousStores => [...previousStores, trackerStore(id)])
         },
         async addOrUpdateTracker(id: string, meta: TrackerMeta) {
-            await (await db).put('tracker', meta, id)
+            await (await db).put('tracker', meta)
             await loadTrackers()
         },
     }
@@ -44,7 +44,7 @@ export function trackerStore(id: string): TrackerStore {
         trackerId: id,
         subscribe,
         async setMeta(meta: TrackerMeta) {
-            await (await db).put('tracker', meta, id)
+            await (await db).put('tracker', meta)
             update(original => ({ ...original, meta }))
         },
         async addEntry(entry: TrackerEntry) {

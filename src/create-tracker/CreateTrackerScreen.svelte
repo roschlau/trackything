@@ -1,10 +1,12 @@
 <script lang="ts">
-    import type { TrackerMeta } from '../data/trackers'
+    import type { TrackerMeta, TrackerMetaUpdate } from '../data/trackers'
     import { primaryColor } from '../style-helpers/primary-color'
     import { navigate } from 'svelte-navigator'
     import { trackersStore } from '../data/stores'
+    import { generateId } from '../data/idb'
 
-    let tracker: TrackerMeta = {
+    let tracker: TrackerMetaUpdate = {
+        trackerId: generateId(),
         name: '',
         color: 'pink',
         mainField: {

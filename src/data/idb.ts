@@ -34,7 +34,7 @@ export async function deleteMainDB() {
 }
 
 function v1CreateTrackerAndEntryStores(db: IDBPDatabase<Schema>) {
-    db.createObjectStore('tracker')
+    db.createObjectStore('tracker', { keyPath: 'trackerId' })
     const entries = db.createObjectStore('entry', { keyPath: 'id' })
     entries.createIndex('by-trackerId', 'trackerId')
     entries.createIndex('by-tags', 'tags', { multiEntry: true })
