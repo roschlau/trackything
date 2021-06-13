@@ -2,8 +2,7 @@
     import { useNavigate } from 'svelte-navigator'
     import { deleteMainDB, persistentStorageGranted } from '../data/idb'
     import { trackersStore } from '../data/stores'
-    import type { ExportFormat } from '../data/backup'
-    import { exportFromStore, importBackup } from '../data/backup'
+    import { exportFromStore, importFromFile } from '../data/backup'
 
     const navigate = useNavigate()
 
@@ -31,19 +30,9 @@
         link.click()
     }
 
-    function importData() {
-        const input = document.createElement('input')
-        input.type = 'file'
-        input.onchange = async () => {
-            const file = input.files.item(0)
-            const backup: ExportFormat = JSON.parse(await file.text())
-            if (!window.confirm(
-                'You are about to import ' + backup.trackers.length + ' trackers. Do you want to continue?'
-            )) return
-            await importBackup(backup)
-            navigate(-1)
-        }
-        input.click()
+    async function importData() {
+        await importFromFile()
+        navigate(-1)
     }
 </script>
 

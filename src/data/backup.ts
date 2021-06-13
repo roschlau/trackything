@@ -13,11 +13,28 @@ export function exportFromStore(store: TrackersStore): ExportFormat {
     return { trackers }
 }
 
-export async function importBackup(backup: ExportFormat) {
-    backup.trackers.forEach(tracker => {
-        trackersStore.addOrUpdateTracker(tracker.id, tracker.meta)
-        tracker.entries.forEach(entry => {
-            trackerStore(tracker.id).addOrUpdateEntry(entry)
-        })
-    })
+export async function importFromFile() {
+    return new Promise((resolve => {
+        const input = document.createElement('input')
+        input.type = 'file'
+        input.onchange = async () => {
+            const file = input.files.item(0)
+            const backup: ExportFormat = JSON.parse(await file.text())
+            if (!window.confirm(
+                'You are about to import ' + backup.trackers.length + ' trackers. Do you want to continue?'
+            )) return
+            await importBackup(backup)
+            resolve(undefined)
+        }
+        input.click()
+    }))
+}
+
+async function importBackup(backup: ExportFormat) {
+    for (const tracker of backup.trackers) {
+        await trackersStore.addOrUpdateTracker(tracker.id, tracker.meta)
+        for (const entry of tracker.entries) {
+            await trackerStore(tracker.id).addOrUpdateEntry(entry)
+        }
+    }
 }
