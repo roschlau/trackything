@@ -2,10 +2,10 @@ import type { TrackerMeta, TrackerMetaUpdate } from './trackers'
 import { trackersStore } from './stores'
 import { generateId } from './idb'
 
-export function addDefaultTrackers() {
-    defaultTrackers.forEach(async tracker => {
+export async function addDefaultTrackers() {
+    for (const tracker of defaultTrackers) {
         await trackersStore.addTracker(tracker)
-    })
+    }
 }
 
 const defaultTrackers: TrackerMetaUpdate[] = [
