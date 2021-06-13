@@ -17,9 +17,8 @@ export const trackersStore: TrackersStore = function () {
     return {
         subscribe,
         async addTracker(meta: TrackerMetaUpdate) {
-            const id = generateId()
             await (await db).add('tracker', { ...meta, createdAt: new Date().getTime() })
-            update(previousStores => [...previousStores, trackerStore(id)])
+            update(previousStores => [...previousStores, trackerStore(meta.trackerId)])
         },
         async addOrUpdateTracker(id: string, meta: TrackerMeta) {
             await (await db).put('tracker', meta)
