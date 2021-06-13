@@ -3,10 +3,10 @@
     import { showTime } from '../util/time'
     import { autoresize } from '../util/autoresize'
     import NumericValueSelector from './NumericValueSelector.svelte'
-    import { v4 as randomUuid } from 'uuid'
     import { navigate } from 'svelte-navigator'
-    import { createEventDispatcher, tick } from 'svelte'
+    import { createEventDispatcher } from 'svelte'
     import { trackerStore } from '../data/stores'
+    import { generateId } from '../data/idb'
 
     export let tracker: Tracker
 
@@ -14,7 +14,7 @@
 
     let entry: TrackerEntry
     $: entry = entry && entry.trackerId === tracker.id ? entry : {
-        id: randomUuid(),
+        id: generateId(),
         trackerId: tracker.id,
         time: new Date().getTime(),
         value: tracker.meta.mainField.default,

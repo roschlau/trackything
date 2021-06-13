@@ -1,7 +1,6 @@
 import { Readable, writable } from 'svelte/store'
-import { db } from './idb'
+import { db, generateId } from './idb'
 import type { Tracker, TrackerEntry, TrackerMeta } from './trackers'
-import { v1, v4 } from 'uuid'
 
 interface TrackersStore extends Readable<TrackerStore[]> {
     addTracker(meta: TrackerMeta): Promise<void>
@@ -16,7 +15,7 @@ export const trackersStore: TrackersStore = function () {
     return {
         subscribe,
         async addTracker(meta: TrackerMeta) {
-            const id = v1()
+            const id = generateId()
             await (await db).add('tracker', meta, id)
             update(previousStores => [...previousStores, trackerStore(id)])
         },

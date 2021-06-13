@@ -24,7 +24,7 @@ async function setUpDb(): Promise<IDBPDatabase<Schema>> {
     await requestPersistentStoragePermission()
     return await openDB<Schema>(dbName, 1, {
         upgrade: (db, oldVersion, newVersion, tx) => {
-            if (oldVersion < 1) v1(db)
+            if (oldVersion < 1) v1CreateTrackerAndEntryStores(db)
         },
     })
 }
@@ -33,7 +33,7 @@ export async function deleteMainDB() {
     await deleteDB(dbName)
 }
 
-function v1(db: IDBPDatabase<Schema>) {
+function v1CreateTrackerAndEntryStores(db: IDBPDatabase<Schema>) {
     db.createObjectStore('tracker')
     const entries = db.createObjectStore('entry', { keyPath: 'id' })
     entries.createIndex('by-trackerId', 'trackerId')
@@ -47,3 +47,21 @@ async function requestPersistentStoragePermission() {
         persistentStorageGranted = await navigator.storage.persist()
     }
 }
+
+export function generateId(): string {
+    const timeValue = new Date().getTime().toString(36)
+    const randomValue = randomIdString()
+    return timeValue + '-' + randomValue
+}
+
+function randomIdString(length: number = defaultIdLength): string {
+    const res: string[] = []
+    for (let i = 0; i < length; i++) {
+        const rand = Math.floor(Math.random() * idChars.length)
+        res.push(idChars[rand])
+    }
+    return res.join('')
+}
+
+const idChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+const defaultIdLength = 11
