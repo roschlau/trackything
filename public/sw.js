@@ -7,7 +7,7 @@ const filesToCache = [
     '/reset.css',
 ]
 
-const staticCacheName = 'static-v1623696180990' // This will get replaced with a timestamp during the build process
+const staticCacheName = 'static-v1623698904369' // This will get replaced with a timestamp during the build process
 
 self.addEventListener('install', event => {
     self.skipWaiting()
