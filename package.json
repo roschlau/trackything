@@ -6,15 +6,24 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear --single",
-    "validate": "svelte-check"
+    "validate": "svelte-check",
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.5",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-typescript": "^8.2.1",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/addon-svelte-csf": "^1.1.0",
+    "@storybook/svelte": "^6.2.9",
     "@tsconfig/svelte": "^1.0.13",
     "@types/autosize": "^4.0.0",
     "@types/sprintf-js": "^1.1.2",
+    "babel-loader": "^8.2.2",
     "node-sass": "^6.0.0",
     "rollup": "^2.50.4",
     "rollup-plugin-copy": "^3.4.0",
@@ -24,6 +33,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "svelte": "^3.38.2",
     "svelte-check": "^2.0.0",
+    "svelte-loader": "^3.1.1",
     "svelte-preprocess": "^4.7.3",
     "tslib": "^2.2.0",
     "typescript": "^4.3.2"
