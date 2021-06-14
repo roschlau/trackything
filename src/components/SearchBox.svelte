@@ -5,39 +5,29 @@
 
 <style lang="scss">
   .search {
+    position: relative;
     width: 100%;
     flex-grow: 1;
     height: 48px;
-    border-radius: 8px;
-    border: 2px solid transparent;
-    background: var(--color-surface04dp);
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding-left: 12px;
-    padding-right: 0;
-    font-size: 18px;
-    font-weight: 300;
+    align-items: stretch;
+    justify-content: stretch;
     color: var(--color-text-secondary);
-
-    > .icon {
-      flex-shrink: 0;
-    }
 
     > input {
       width: 0;
-      flex-basis: 0;
       flex-grow: 1;
-      background: none;
-
-      &:focus {
-        border-color: transparent;
-      }
+      padding-left: 48px;
+      font-size: 18px;
+      font-weight: 300;
     }
 
-    &:focus-within {
-      border: 2px solid var(--color-text-disabled-hint);
+    > .icon {
+      position: absolute;
+      bottom: 50%;
+      transform: translateY(50%);
+      left: 12px;
+      pointer-events: none;
     }
   }
 </style>
