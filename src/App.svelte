@@ -10,6 +10,12 @@
     import TrackerDetailScreen from './tracker-detail-screen/TrackerDetailScreen.svelte'
     import SettingsScreen from './settings/SettingsScreen.svelte'
     import CreateTrackerScreen from './create-tracker/CreateTrackerScreen.svelte'
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+        })
+    }
 </script>
 
 <style lang="scss">

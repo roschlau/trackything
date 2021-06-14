@@ -31,6 +31,8 @@ function serve() {
     };
 }
 
+const cacheBust = new Date().getTime().toString()
+
 export default {
     input: 'src/main.ts',
     output: {
@@ -64,6 +66,16 @@ export default {
         typescript({
             sourceMap: !production,
             inlineSources: !production
+        }),
+        copy({
+            targets: [
+                {
+                    src: 'public/service-worker.js',
+                    dest: 'public',
+                    rename: 'sw.js',
+                    transform: contents => contents.toString().replace(/__VERSION__/g, cacheBust),
+                }
+            ]
         }),
 
         // In dev mode, call `npm run start` once
