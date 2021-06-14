@@ -4,7 +4,7 @@
   "description": "Privacy-first, beautiful and fast anything-tracker",
   "theme_color": "#FF6B8E",
   "background_color": "#121212",
-  "display": "minimal-ui",
+  "display": "standalone",
   "start_url": "./",
   "icons": [
     {
