@@ -30,7 +30,7 @@
         <Route path="/tracker/new" component="{CreateTrackerScreen}"/>
         <Route path="/tracker/:trackerId" component="{TrackerDetailScreen}"/>
         <Route path="/settings" component="{SettingsScreen}"/>
-        <Route path="/analyze" component="{AnalyzeScreen}"/>
+        <Route path="/reports" component="{AnalyzeScreen}"/>
         <Route path="/" component="{TrackingScreen}"/>
     </main>
 </Router>

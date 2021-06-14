@@ -1,14 +1,14 @@
 <style lang="scss">
-  .analytics {
+  .reports {
     padding: 0 24px;
   }
 </style>
 
 
 <h1>
-    Analytics
+    Reports
 </h1>
 
-<div class="analytics">
-    Analytics coming soon!
+<div class="reports">
+    Reports coming soon!
 </div>

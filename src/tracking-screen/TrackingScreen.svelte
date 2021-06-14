@@ -146,8 +146,8 @@
             </svg>
             <input type="text" bind:value={searchText}/>
         </div>
-        <Link to="/analyze" class="action">
-            <img class="icon" src="/icons/analyze_default.svg" alt="Analyze Icon" width="24" height="24"/>
+        <Link to="/reports" class="action">
+            <img class="icon" src="/icons/reports_default.svg" alt="Reports Icon" width="24" height="24"/>
         </Link>
         <Link to="/settings" class="action">
             <svg class="icon" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
