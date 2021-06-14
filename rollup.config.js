@@ -71,7 +71,7 @@ export default {
             targets: [
                 {
                     src: 'public/service-worker.js',
-                    dest: 'public',
+                    dest: 'public/build',
                     rename: 'sw.js',
                     transform: contents => contents.toString().replace(/__VERSION__/g, cacheBust),
                 }
