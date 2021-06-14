@@ -11,7 +11,7 @@
     import SettingsScreen from './settings/SettingsScreen.svelte'
     import CreateTrackerScreen from './create-tracker/CreateTrackerScreen.svelte'
 
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && !location.href.includes('://localhost')) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/build/sw.js')
         })
