@@ -22,14 +22,10 @@ export function relativeTime(time: number, accuracy: 'minute' | 'day' = 'minute'
     const then = new Date(time)
     const diffMillis = now.getTime() - then.getTime()
     const oneDay = 1000 * 60 * 60 * 24
-    if (diffMillis < oneDay) {
-        // Might be today
-        if (now.getDate() === then.getDate()) {
-            // Yup, today.
-            return accuracy === 'minute' ? showTime(then) : 'Today'
-        }
+    if (diffMillis < oneDay && now.getDate() === then.getDate()) {
+        return accuracy === 'minute' ? showTime(then) : 'Today'
     }
-    if (diffMillis < oneDay * 2) {
+    if (diffMillis < oneDay * 2 && then.getDate() + 1 === now.getDate()) {
         return 'Yesterday'
     }
     if (diffMillis < oneDay * 7) {
