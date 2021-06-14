@@ -6,6 +6,7 @@
      * If set, will be rendered as an `a` element instead of a `button`, to be used for proper navigation.
      */
     export let linkTo: string | undefined = undefined
+    export let disabled = false
 
     const dispatch = createEventDispatcher()
 
@@ -35,6 +36,9 @@
     &:focus-within {
       border: 2px solid var(--color-text-disabled-hint);
     }
+    &:disabled {
+      opacity: .5;
+    }
   }
 
   .encapsulate {
@@ -50,18 +54,29 @@
     > :global(.link:focus-within) {
       border: 2px solid var(--color-text-disabled-hint);
     }
+
+    > :global(.link.disabled) {
+      opacity: .5;
+    }
   }
 </style>
 
 {#if linkTo}
     <span class="encapsulate">
-        <Link to="{linkTo}" class="link">
-            <slot/>
-        </Link>
-    </span>
+        {#if !disabled}
+            <Link to="{linkTo}" class="link">
+                <slot/>
+            </Link>
+        {:else}
+            <span class="link disabled">
+                <slot/>
+            </span>
+        {/if}
+        </span>
 {:else}
     <button
         class="button"
+        {disabled}
         on:click={dispatchClick}
     >
         <slot/>

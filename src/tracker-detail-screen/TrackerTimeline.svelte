@@ -7,14 +7,11 @@
 
     export let tracker: Tracker
 
-    let today: TrackerEntry[]
-    $: today = tracker.entries.filter(it => areSameDay(it.time, new Date()))
-    let notToday: [string, TrackerEntry[]][]
-    $: notToday = flatEntriesWithoutToday(tracker.entries)
+    let entries: [string, TrackerEntry[]][]
+    $: entries = flatEntriesWithoutToday(tracker.entries)
 
     function flatEntriesWithoutToday(entries: TrackerEntry[]): [string, TrackerEntry[]][] {
         const entriesByTime = groupBy(entries, entry => relativeTime(entry.time, 'day'))
-        entriesByTime.delete('Today')
         return Array.from(entriesByTime.entries())
     }
 </script>
@@ -57,14 +54,7 @@
 </style>
 
 <div class="timeline">
-    <h2 class="time-block-heading">Today</h2>
-    <Link to="/record/{tracker.id}" class="new-entry-button">
-        Add Entry
-    </Link>
-    {#each today as entry (entry.time)}
-        <NumericEntrySummaryTile {entry} tracker="{tracker}"/>
-    {/each}
-    {#each notToday as [heading, entries] (heading)}
+    {#each entries as [heading, entries] (heading)}
         <h2 class="time-block-heading">{heading}</h2>
         {#each entries as entry (entry.time)}
             <NumericEntrySummaryTile {entry} tracker="{tracker}"/>
