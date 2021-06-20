@@ -22,6 +22,13 @@
         comment: '',
     }
 
+    let changeDate = false
+    function applyNewTime(humanReadableTime: string) {
+        const [hours, minutes] = humanReadableTime.split(':').map(it => parseInt(it))
+        if (isNaN(hours) || isNaN(minutes)) return
+        entry.time = new Date(entry.time).setHours(hours, minutes)
+    }
+
     function toggleTag(tag: string) {
         if (entry.tags.includes(tag)) {
             entry.tags = entry.tags.filter(it => it !== tag)
@@ -77,6 +84,11 @@
     .time-value {
       font-size: 24px;
       color: var(--color-text-primary);
+    }
+
+    .time-input {
+      margin-top: 12px;
+      font-size: 24px;
     }
 
     .tags {
@@ -172,9 +184,21 @@
 <div class="tracker-name-indicator">
     Tracker: <span class="tracker-name font-body-bold">{tracker.meta.name}</span>
 </div>
-<div class="field">
+<div
+    class="field"
+    on:click={() => changeDate = true}
+>
     <div class="field-name">Time</div>
-    <div class="time-value">{showTime(entry.time)}</div>
+    {#if !changeDate}
+        <div class="time-value">{showTime(entry.time)}</div>
+    {:else}
+        <input
+            class="time-input font-body-bold"
+            type="time"
+            value="{showTime(entry.time)}"
+            on:change={event => applyNewTime(event.target.value)}
+        />
+    {/if}
 </div>
 <div class="field">
     <div class="field-name">{tracker.meta.mainField.name}</div>
