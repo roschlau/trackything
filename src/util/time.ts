@@ -32,7 +32,7 @@ export function relativeTime(time: number, accuracy: 'minute' | 'day' = 'minute'
         return days[then.getDay()]
     }
     if (diffMillis < oneDay * 365 && then.getFullYear() === now.getFullYear()) {
-        return sprintf('%1$02d.%2$02d', then.getDate(), then.getMonth() + 1)
+        return sprintf('%1$02d.%2$02d.%3$d', then.getDate(), then.getMonth() + 1, then.getFullYear())
     }
     if (then.getFullYear() + 1 === now.getFullYear()) {
         return 'Last Year'
