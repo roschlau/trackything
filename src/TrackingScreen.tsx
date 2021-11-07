@@ -8,23 +8,24 @@ import { TrackerTile } from './TrackerTile'
 import { styled } from './stitches.config'
 import { PageTitle } from './design-system/PageTitle'
 import { ScreenLayout } from './design-system/ScreenLayout'
-import { ActionBar, ActionBarIconButton } from './design-system/ActionBar'
+import { ActionBar } from './design-system/ActionBar'
+import { Link } from 'react-router-dom'
 
 export const TrackingScreen: React.FC<{ trackers: Tracker[] }> = ({ trackers }) => (
   <ScreenLayout>
     <PageTitle>trackything</PageTitle>
     <ActionBar>
       <SearchBar/>
-      <ActionBarIconButton>
+      <Link to="/analytics">
         <AccessibleIcon label={'Analytics'}>
           <BarChartIcon/>
         </AccessibleIcon>
-      </ActionBarIconButton>
-      <ActionBarIconButton>
+      </Link>
+      <Link to="/settings">
         <AccessibleIcon label={'Settings'}>
           <GearIcon/>
         </AccessibleIcon>
-      </ActionBarIconButton>
+      </Link>
     </ActionBar>
     {<TrackersOverview trackers={trackers}/>}
   </ScreenLayout>

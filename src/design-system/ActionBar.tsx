@@ -5,11 +5,10 @@ export const ActionBar = styled('div', {
   display: 'grid',
   gridAutoFlow: 'column',
   gap: 12,
-})
-export const ActionBarIconButton = styled('button', {
+  '& > a, & > button': {
     ...inputStyle,
     display: 'grid',
     placeContent: 'center',
     paddingX: 10,
   },
-)
+})
