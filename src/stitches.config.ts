@@ -105,3 +105,13 @@ export const {
     paddingX: (value: any) => ({ paddingLeft: value, paddingRight: value }),
   },
 })
+
+export const fontStyle = (weight: 'regular' | 'semibold', font: 'body' | 'heading' = 'body') => {
+  console.log(weight, font)
+  return {
+    fontFamily: '$' + font,
+    fontWeight: font === 'body'
+      ? (weight === 'regular' ? 300 : 500)
+      : (weight === 'regular' ? 400 : 700),
+  }
+}
