@@ -59,7 +59,15 @@ type PalettePosition = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
 const alias = <T extends string>(alias: T, palette: Palette<any>): Palette<T> => {
   return Object.keys(palette)
-    .reduce((acc, key) => ({ ...acc, [key.replace(/^[^\d]+/, alias)]: '$' + key }), {}) as Palette<T>
+    .reduce((acc, key) => {
+      const aliasedKey = key.replace(/^[^\d]+/, alias)
+      return (
+        {
+          ...acc,
+          [aliasedKey]: '$' + key,
+        }
+      )
+    }, {}) as Palette<T>
 }
 
 export const {
@@ -80,6 +88,8 @@ export const {
       ...alias('primary', crimsonDark),
       ...alias('error', tomatoDark),
       textPrimary: 'hsla(0, 0%, 100%, .9)',
+      textSecondary: 'hsla(0, 0%, 100%, .6)',
+      textTertiary: 'hsla(0, 0%, 100%, .38)',
       appBackground: '$grayDark1',
       inputBackground: '$grayDark3',
     },
